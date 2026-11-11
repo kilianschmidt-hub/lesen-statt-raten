@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Presenter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<style>
+/* Presenter im Intric-Look: Notiz groß in Serif-freiem Satz, Steuerung als Pills. */
+:root {
+  --bg: #F9F9F9; --ink: #1C1C1C; --muted: #6B6B70; --line: #D9D9D9; --panel: #F0F1F1;
+  --serif: "Newsreader", Georgia, serif; --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--sans); }
+header { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; border-bottom: 1px solid var(--line);
+         padding-block: calc(14px + env(safe-area-inset-top, 0px)) 14px;
+         padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wordmark { height: 20px; width: auto; display: block; color: var(--ink); margin-right: 8px; }
+.wordmark svg { height: 100%; width: auto; display: block; }
+#pos { font-variant-numeric: tabular-nums; font-size: 15px; }
+.eyebrow, #scene { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+#clock { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+button { font: 500 12px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 10px 16px;
+         cursor: pointer; border: 1px solid var(--ink); background: transparent; color: var(--ink); }
+button.pri { background: var(--ink); color: #fff; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+main { max-width: 1040px; padding-block: 28px 40px;
+       padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+#note { font-size: 24px; line-height: 1.55; max-width: 46em; }
+h2 { margin: 32px 0 8px; font-weight: 400; }
+#next { font-size: 17px; line-height: 1.55; color: var(--muted); max-width: 52em; }
+#status { color: var(--muted); font-size: 14px; }
+#status a { color: var(--ink); }
+@media (max-width: 600px) { #note { font-size: 19px; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark" aria-label="Intric"><svg viewBox="0 0 2043.43 684.34" fill="currentColor" aria-hidden="true"><path d="M1548.12,198.2v474.61h-101.95v-343.79c0-59.86,39.13-113.56,96.83-129.5,1.69-.46,3.4-.91,5.12-1.32"/><path d="M101.95,198.2v474.61H0v-343.79c0-59.86,39.13-113.56,96.83-129.5,1.69-.46,3.4-.91,5.12-1.32"/><path d="M192.57,203.86h98.18v84.95c19.82-56.63,84.96-96.28,164.24-96.28,113.28,0,183.13,76.46,183.13,188.8v289.79h-101.93v-261.48c0-76.46-41.54-123.66-111.4-123.66-81.18,0-130.27,63.26-130.27,161.42v223.72h-101.95V203.86Z"/><path d="M870.38,289.74v218.13c0,56.65,31.07,82.11,68.95,82.11,22.84,0,46.97-7.67,66.91-18.66v81.24c-29.48,20.98-59.39,30.8-99.01,30.8-82.25,0-138.77-52.76-138.77-148.17v-245.45h-93.53v-85.86h93.53v-101.95L870.38,0v203.88h135.86v85.86h-135.86Z"/><path d="M1327.24,192.53c-66.07,0-120.83,36.82-140.66,99.12v-87.79h-98.17v467.26h101.95v-197.28c0-119.89,51.93-184.07,132.15-184.07,20.37,0,42.4,6.16,58.79,13.73v-99.09c-15.87-9.13-33.59-11.88-54.07-11.88"/><path d="M2043.43,610.82c-41.95,47.87-104.76,73.51-180.04,73.51-121.96,0-213.24-75.72-237.85-184.86-4.36-19.22-6.64-39.51-6.64-60.56s2.29-42.03,6.64-61.54c24.42-109.38,114.47-184.83,237.85-184.83,71.53,0,134.85,23.54,177.86,68.57l-73.07,73.04c-22.85-31.7-60.19-50.05-105.74-50.05-63.48,0-110.26,36.66-129.33,93.27-5.99,17.85-9.26,37.68-9.39,58.97-.03.67-.03,1.36-.03,2.07,0,.53,0,1.09.03,1.68.18,21.66,3.58,41.6,9.71,59.39.11.29.21.58.32.87,19.89,56.69,67.81,91.49,129.64,91.49,49.15,0,85.66-18.93,108.22-52.84l71.82,71.82Z"/><path d="M1733.75,500.35h-.27c-6.21-18.05-9.61-38.28-9.76-60.27.2,21.66,3.58,41.61,9.73,59.4.1.29.2.58.3.87"/><rect x="0" y="101.91" width="101.95" height="101.95"/><rect x="1446.17" y="101.9" width="101.95" height="101.95"/></svg></span>
+  <span id="pos">– / –</span><span id="scene"></span>
+  <button id="open" type="button">Präsentation öffnen</button>
+  <button id="back" type="button">‹ Zurück</button><button id="fwd" class="pri" type="button">Weiter ›</button>
+  <span id="clock">00:00</span>
+</header>
+<main>
+  <div id="note">„Präsentation öffnen“ klicken, das Fenster auf den Beamer ziehen und mit „Weiter“ starten. Die Pfeiltasten funktionieren auch hier.</div>
+  <h2 class="eyebrow">Danach</h2>
+  <div id="next"></div>
+  <p id="status"></p>
+</main>
+<script>
+const TALK = {"title": "Lesen statt raten – Intric Agentic Search", "subtitle": "Warum Agentic Search genauere Antworten liefert als klassisches RAG", "scenes": [{"name": "Vortrag", "src": "media/Vortrag.mp4", "ends": [5.4, 10.4, 15.95, 22.05, 27.75, 36.6, 44.6, 52.05, 56.95, 61.2, 65.6, 70.9, 77.1, 81.45, 84.95, 93.65, 98.65, 103.85]}], "steps": [{"si": 0, "k": 0, "note": "Worum es heute geht, in einem Satz: Die Genauigkeit einer KI-Antwort entscheidet sich bei der Suche, nicht erst beim Sprachmodell. Drei Punkte. Erstens das Problem: Ein klassisches RAG-System, wie es heute in vielen Häusern läuft, gibt dem Modell fünf ähnliche Textstücke. Was darin fehlt, kann das Modell nicht wissen, es kann nur raten. Zweitens der Unterschied: Intric Agentic Search liest wie ein Mensch. Es wählt zuerst das richtige Dokument, sucht gezielt, blättert weiter und sieht sich Pläne und Tabellen selbst an. Drittens die Wirkung: genauere Antworten, jede mit Beleg. Und weil jeder Assistent und jeder Chatbot im Haus auf derselben Suche aufbaut, macht eine bessere Suche alle diese Anwendungen zugleich besser. Das zeige ich Ihnen jetzt an einem einzigen Bild.", "chapter": "Worum es geht"}, {"si": 0, "k": 1, "note": "Ein einziges Bild begleitet uns durch die nächsten Minuten. Links Sie, mit einer Frage. In der Mitte das System, das die Antwort vorbereitet, und darin der Kontext: alles, was das Sprachmodell am Ende zu lesen bekommt. Rechts oben das Sprachmodell selbst. Es bekommt den ganzen Kontext und schickt genau eine Antwort zurück. Rechts unten der Wissensbestand: Intranet, Weisungen, Handbücher und Formulare, oft viele tausend Seiten. Mehr Teile braucht es nicht. Alles, was heute passiert, passiert zwischen diesen Teilen.", "chapter": "1 · Das Bild"}, {"si": 0, "k": 2, "note": "Einmal im Zeitraffer. Ihre Frage landet als Zeile im Kontext. Das System holt passende Textstellen aus dem Wissensbestand dazu, der ganze Kontext geht an das Modell, die Antwort kommt zurück zu Ihnen. Wichtig ist der Satz unten: Das Modell kennt Ihre Dokumente nicht. Es kennt nur, was in diesem Moment im Kontext steht. Die Genauigkeit einer Antwort entscheidet sich also, bevor das Modell schreibt, nämlich bei der Frage, welche Stellen in den Kontext kommen. Wenn Antworten heute nicht die Qualität haben, die Sie brauchen, liegt es meistens genau hier. Schauen wir uns an, woran das bei einem klassischen RAG-System typischerweise liegt.", "chapter": "1 · Das Bild"}, {"si": 0, "k": 3, "note": "Das hier ist ein typisches klassisches RAG-System, nicht unbedingt Ihres im Detail. Die Pipeline ist fest: Die Frage wird in einen Vektor umgewandelt, dann werden die ähnlichsten Textstücke gesucht. Nehmen wir eine einfache Bitte: Fasse Kapitel 8 zusammen. Im Wissensbestand leuchtet jetzt alles auf, wo Kapitel 8 vorkommt, und zwar umso heller, je öfter: das Inhaltsverzeichnis, ein Verweis in Kapitel 3, eine Fußnote. Das ist das Aktenschrank-Problem. Das System sieht, wo das Wort steht, aber nicht, warum es dort steht, und nicht, welche Quelle die maßgebliche ist.", "chapter": "2 · Klassisches RAG"}, {"si": 0, "k": 4, "note": "Dann die festen fünf. Die fünf ähnlichsten Stücke wandern in den Kontext: die Zeile im Inhaltsverzeichnis mit Kapitel 8 und Seite 112, der Verweis aus Kapitel 3, eine Fußnote und zwei Zufallstreffer. Das Modell macht daraus das Beste, was es kann: eine Zusammenfassung aus Randbemerkungen. Der Kern des Kapitels fehlt, weil er nie im Kontext stand. Das ist kein Fehler des Modells. Es hat schlicht das Falsche zu lesen bekommen. Ein Reranking ändert daran wenig: Es sortiert die fünf Stücke besser, holt aber das Kapitel nicht.", "chapter": "2 · Klassisches RAG"}, {"si": 0, "k": 5, "note": "Noch deutlicher bei einer Frage, die jeder Mensch sofort lösen würde: Was steht auf Seite 25? Für einen Vektor ist die Zahl 25 fast bedeutungslos. Es leuchten Stellen auf, in denen zufällig 25 vorkommt: 25 Tage Urlaub, 25 Prozent, eine Telefonnummer. Die Antwort nennt die falsche Seite oder erfindet eine. Seitenzahlen, Paragrafen, Tabellen, also genau das, worüber Fachleute in der Verwaltung sprechen, sind für Ähnlichkeit kaum sichtbar. Diese Pipeline kann nicht blättern, nicht weiterlesen und nicht hinsehen. Jetzt dieselbe Frage an Intric.", "chapter": "2 · Klassisches RAG"}, {"si": 0, "k": 6, "note": "Gleiche Frage, anderes System. Der Rahmen bleibt, aber statt einer festen Pipeline hat der Assistent jetzt Werkzeuge, und das Modell entscheidet nach jedem Schritt selbst, welches es als Nächstes benutzt. Der erste Griff geht nicht in den Text, sondern in den Katalog: Zu jeder Datei gibt es eine kurze Zusammenfassung. Wie ein Bibliothekar, der erst nachschaut, welches Buch gemeint ist, bevor er eines aufschlägt. Das verhindert, dass schwache Treffer aus fünfzig fremden Dateien die richtige Stelle verdrängen. Im Produkt heißt dieses Werkzeug browse_knowledge_files.", "chapter": "3 · Agentic Search"}, {"si": 0, "k": 7, "note": "Dann sucht der Agent in genau diesem Dokument, und er stellt bei jeder Suche selbst ein, wie viel Stichwort und wie viel Bedeutung zählt. Bei Paragraf 39 VwVfG zählt das exakte Stichwort, sonst wären 39 und 93 fast dasselbe. Bei der Frage, ob ein Bescheid begründet werden muss, zählt die Bedeutung: Das Gesetz spricht von der Begründung des Verwaltungsaktes, nicht von Bescheiden. Kapitel 8 ist ein exakter Begriff, also stichwortlastig. Treffer: Seite 112. Ein klassisches RAG hat für all diese Fragen eine einzige, feste Einstellung.", "chapter": "3 · Agentic Search"}, {"si": 0, "k": 8, "note": "Jetzt der Schritt, den klassisches RAG nicht kann. Jedes Textstück weiß, auf welcher Seite es steht. Der Agent liest also ab Seite 112 weiter, Seite für Seite, bis die Überschrift von Kapitel 9 kommt. Im Kontext landen nicht fünf verstreute Stücke, sondern das ganze Kapitel, und nur das. Dasselbe Prinzip beantwortet die Frage nach Seite 25: Der Agent ruft die Seite direkt auf, ganz ohne Ranking. Und findet er zu wenig, ist er angewiesen, anders zu formulieren oder den Katalog durchzugehen, bevor er sagt, dass es etwas nicht gibt.", "chapter": "3 · Agentic Search"}, {"si": 0, "k": 9, "note": "Jetzt erst schreibt das Modell, und zwar aus dem gelesenen Kapitel. Jede Aussage trägt ein Zitat mit Datei und Seite. Bei einer PDF öffnet ein Klick das Original direkt an der zitierten Seite, neben dem Gespräch. Ihre Fachleute müssen der Antwort also nicht glauben, sie können sie prüfen. Die naheliegende Frage ist: Woher weiß das System, wo Seite 112 ist und worum es in jeder Datei geht? Die Antwort liegt vor der ersten Frage, beim Hochladen.", "chapter": "3 · Agentic Search"}, {"si": 0, "k": 10, "note": "Jede Datei wird aufbereitet, sobald sie hochgeladen ist, im Hintergrund. Erster Schritt: Intric liest die Textebene, die in den meisten PDFs schon vorhanden ist. Nur Seiten, die es brauchen, gehen durch die Texterkennung: eingescannte Seiten, kaputter Text, Seiten mit großen Bildern oder Tabellen ohne Rahmen. Das wird Seite für Seite entschieden. Ein halb digitales, halb gescanntes Dokument wird also richtig behandelt. Die Texterkennung läuft lokal, ohne externen Dienst.", "chapter": "4 · Vor der ersten Frage"}, {"si": 0, "k": 11, "note": "Der zweite Schritt unterscheidet uns von klassischer Texterkennung. Klassisch entsteht eine Textwand: Tabellen verlieren ihre Spalten, Diagramme verschwinden. Intric zerlegt die Seite in ihre Teile: Textblöcke, Tabellen, Diagramme, Bilder. Tabellen werden so übertragen, dass jeder Wert unter seiner Spaltenüberschrift bleibt. Ein Vision-Modell beschreibt Diagramme und Bilder, und die Beschreibung steht genau dort, wo die Abbildung war. Damit kann man auch nach Bildinhalten suchen. Zeichnungen, Grundrisse und Karten werden als visuell markiert, und ihre Position auf der Seite wird gespeichert. Das brauchen wir gleich noch.", "chapter": "4 · Vor der ersten Frage"}, {"si": 0, "k": 12, "note": "Dritter Schritt. Jede Datei bekommt eine kurze Zusammenfassung. Das ist der Katalog, den der Agent vorhin als Erstes gelesen hat. Parallel wird der Text in kleine Stücke geteilt, an natürlichen Grenzen wie Absätzen, und nie über eine Seitengrenze hinweg. Jedes Stück trägt seine Seitenzahl und Position und wird doppelt abgelegt: für die Stichwortsuche und für die Bedeutungssuche. Genau deshalb konnte der Agent Seite 112 finden und von dort weiterblättern. Und damit zum stärksten Punkt: Dokumente, deren Antwort nicht im Text steht, sondern im Bild.", "chapter": "4 · Vor der ersten Frage"}, {"si": 0, "k": 13, "note": "Bisher ging es um Text. Viele Antworten stehen aber nicht im Fließtext, sondern in einer Tabelle, einem Diagramm, einem Organigramm, einer Prozessgrafik, einem eingescannten Formular oder einem Plan. Ein klassisches System hat dort nur die Texterkennung: einzelne Wörter und Zahlen ohne Lage und ohne Bezug, also Werte ohne ihre Spalte und Beschriftungen ohne ihren Pfeil. Der Agent kann sich solche Stellen dagegen selbst ansehen, bei jeder Art von komplexem Dokument. Ich zeige das an einem Beispiel, an dem man es besonders gut sieht: einem Plan.", "chapter": "5 · Die Sandbox"}, {"si": 0, "k": 14, "note": "Die Frage: Welche lichte Raumhöhe hat Büro 2.04? Die Antwort steht in der Zeichnung. In der Gesamtansicht sind Maße und Beschriftungen so klein, dass auch ein gutes Modell sie nicht lesen kann. Genauso geht es einer dicht gesetzten Tabelle auf einer ganzen Seite oder der Beschriftung in einem Organigramm. Ein klassisches System liefert hier lose Wörter wie 2,50, 2.04 und RH, kann Maß und Raum nicht zuordnen und antwortet mit keine Angabe gefunden oder mit einer geratenen Zahl. Die Zeichnung ist ein synthetisches Beispiel.", "chapter": "5 · Die Sandbox"}, {"si": 0, "k": 15, "note": "Hier kommt die Sandbox ins Bild: ein eigener, abgeschotteter Rechner für jedes Gespräch, ohne Netzwerk, die Dateien darin nur lesbar. Der Suchtreffer enthält dank der Vorbereitung beim Upload bereits die Position der Abbildung auf Seite 7. Der Agent schneidet in der Sandbox genau diesen Bereich aus, mit bis zu 300 dpi, mit einem ganz normalen Befehl wie pdftoppm. Rechts sehen Sie, was dabei entsteht: Aus dem unlesbaren Ausschnitt wird eine Ansicht, in der jedes Detail lesbar ist. Nach demselben Prinzip kann der Agent einzelne Seiten gezielt als Text lesen, ohne das ganze Dokument zu laden.", "chapter": "5 · Die Sandbox"}, {"si": 0, "k": 16, "note": "Das Modell betrachtet den Ausschnitt selbst, nicht eine Textbeschreibung davon, und liest das Maß direkt ab: lichte Raumhöhe 2,50 Meter, mit Zitat auf Seite 7. Das gilt für jedes komplexe Dokument. Der Agent zoomt in eine Tabellenzeile, liest Werte aus einem Diagramm, folgt den Linien eines Organigramms oder entziffert ein eingescanntes Formular. Überall dort, wo die Antwort im Bild steht, schaut er hin. Falls gefragt: Die Sandbox gibt es derzeit in den von Intric gehosteten Umgebungen, nicht im On-Premises-Paket, und sie braucht ein Modell mit Bildverständnis.", "chapter": "5 · Die Sandbox"}, {"si": 0, "k": 17, "note": "Damit sind wir bei der Ausgangsfrage: Was liest das Modell, bevor es antwortet? Bei einem klassischen RAG sind es fünf ähnliche Fragmente, ausgewählt nach einer festen Regel. Es kann nicht blättern, nicht weiterlesen und nicht hinsehen. Bei Intric entscheidet der Agent: erst das richtige Dokument, dann die richtige Gewichtung, dann weiterlesen, bis das Kapitel vollständig ist, und bei Tabellen, Grafiken oder Plänen hinsehen. Jede Antwort mit Beleg. Und das ist der Hebel für Ihre ganze Organisation: Ihr Chatbot, künftige Fachassistenten, jede weitere KI-Anwendung ist nur so gut wie das, was sie liest. Eine genauere Suche macht jede dieser Anwendungen genauer, ohne dass Sie das Modell wechseln. Genaue, belegte Antworten schaffen Vertrauen, und erst mit Vertrauen nutzen Mitarbeitende KI im Alltag, statt jede Antwort nachzuprüfen. Am überzeugendsten ist das an Ihren eigenen Dokumenten. Bringen Sie die schwierigsten mit, dann vergleichen wir direkt.", "chapter": "Zum Schluss"}]};
+const ST = TALK.steps, S = TALK.scenes;
+document.title = 'Presenter · ' + TALK.title.split(' – ')[0];
+let at = -1, win = null, t0 = null;
+const ch = 'BroadcastChannel' in window ? new BroadcastChannel('talk:' + TALK.title) : null;
+const send = m => { ch && ch.postMessage(m); if (win && !win.closed) win.postMessage(m, '*'); };
+const onMsg = d => { if (d && d.at !== undefined) render(d.at); };
+if (ch) ch.onmessage = e => onMsg(e.data);
+addEventListener('message', e => onMsg(e.data));
+function render(k) {
+  at = k;
+  if (t0 === null && k >= 0) t0 = Date.now();
+  const st = ST[k];
+  document.getElementById('pos').textContent = (k + 1) + ' / ' + ST.length;
+  document.getElementById('scene').textContent = st.chapter || S[st.si].name;
+  document.getElementById('note').textContent = st.note || '—';
+  document.getElementById('next').textContent = ST[k + 1] ? ST[k + 1].note : 'Ende.';
+}
+const go = (k, instant) => { if (k >= 0 && k < ST.length) send({ go: k, instant }); };
+document.getElementById('fwd').onclick = () => go(at + 1);
+document.getElementById('back').onclick = () => go(at - 1, true);
+document.getElementById('open').onclick = () => {
+  try { win = window.open('index.html', 'talk-present'); } catch (e) { win = null; }
+  const st = document.getElementById('status');
+  if (win) { st.textContent = 'Präsentationsfenster auf den Beamer ziehen, dort F für Vollbild drücken.'; }
+  else { st.innerHTML = 'Fenster wurde blockiert. <a href="index.html" target="_blank" rel="noopener">Präsentation in neuem Tab öffnen</a>, dann steuern beide Tabs einander.'; }
+};
+addEventListener('keydown', e => {
+  if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(at + 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(at - 1, true); }
+});
+setInterval(() => {
+  if (t0 === null) return;
+  const s = Math.floor((Date.now() - t0) / 1000);
+  document.getElementById('clock').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+}, 1000);
+send({ hello: 1 });
+</script>
+</body>
+</html>
